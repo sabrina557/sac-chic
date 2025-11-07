@@ -1,25 +1,55 @@
-import logo from './logo.svg';
+
+// Import des styles Bootstrap (chargés globalement)
+import 'bootstrap/dist/css/bootstrap.min.css';
+// Import des composants Bootstrap utilisés dans ce fichier
+import { Container, Card, Button } from 'react-bootstrap';
 import './App.css';
 
-function App() {
+// Imports des composants React locaux (chaque fichier exporte un petit composant)
+import Name from './Name';
+import Price from './Price';
+import Description from './Description';
+import Image from './Image';
+
+// Import d'une image locale placée dans le dossier `src`.
+// Avec l'import, le bundler (Create React App / Vite / etc.) résout l'URL au moment de la construction.
+import girl from './girl.png';
+
+export default function App() {
+  // Valeur de démonstration (on pourrait la recevoir en prop ou via état)
+  const prenom = "Sabrina"; // Vous pouvez changer cette valeur pour tester
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container className="mt-5">
+      {/* Carte produit : contient l'image, le nom, le prix et la description */}
+      <Card style={{ width: '22rem', margin: 'auto', boxShadow: '0 4px 8px rgba(0,0,0,0.2)' }}>
+        {/* Composant Image (séparé pour la lisibilité) */}
+        <Image />
+        <Card.Body className="card-body-custom text-center">
+          {/* Petits composants pour le nom, le prix et la description */}
+          <Name />
+          <Price />
+          <Description />
+          <Button variant="primary">Acheter</Button>
+        </Card.Body>
+      </Card>
+
+      <div style={{ textAlign: 'center', marginTop: '20px' }}>
+        {/* Exemple de rendu conditionnel : si `prenom` existe on affiche un message et l'avatar */}
+        {prenom ? (
+          <>
+            <p>Hello, {prenom}!</p>
+            {/* On utilise `src={girl}` — la variable `girl` contient l'URL résolue par le bundler */}
+            <img
+              src={girl}
+              alt="avatar"
+              style={{ borderRadius: '50%', marginTop: '10px' }}
+            />
+          </>
+        ) : (
+          <p>Hello, there!</p>
+        )}
+      </div>
+    </Container>
   );
 }
-
-export default App;
