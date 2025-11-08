@@ -6,10 +6,10 @@ import { Container, Card, Button } from 'react-bootstrap';
 import './App.css';
 
 // Imports des composants React locaux (chaque fichier exporte un petit composant)
-import Name from './Name';
-import Price from './Price';
-import Description from './Description';
-import Image from './Image';
+import Name from './components/Name';
+import Price from './components/Price';
+import Description from './components/Description';
+import Image from './components/Image';
 
 // Import d'une image locale placée dans le dossier `src`.
 // Avec l'import, le bundler (Create React App / Vite / etc.) résout l'URL au moment de la construction.
